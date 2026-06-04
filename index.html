@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sawala — Aplikasi Sekolah Islam Terpadu</title>
+<meta name="description" content="Aplikasi manajemen sekolah Islam terpadu (SDIT/SMPIT) white-label dan open-source. Akademik, ibadah harian, hafalan Quran, SPP. PWA dengan absensi offline.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo-full.svg" alt="Sawala" height="32" class="logo-light">
+      <img src="logo-full-dark.svg" alt="Sawala" height="32" class="logo-dark">
+    </a>
+    <div class="nav-links">
+      <a href="#features" data-id="Fitur" data-en="Features"></a>
+      <a href="#pricing" data-id="Harga" data-en="Pricing"></a>
+      <a href="#demo" data-id="Demo" data-en="Demo"></a>
+      <a href="#technology" data-id="Teknologi" data-en="Technology"></a>
+      <a href="/mitra.html" data-id="Mitra & Binaan" data-en="Partners"></a>
+      <button class="lang-toggle" onclick="toggleLang()" title="Switch language">EN / ID</button>
+      <a href="https://github.com/artivisi/sawala" class="btn btn-sm btn-outline">GitHub</a>
+    </div>
+    <button class="nav-menu-btn" onclick="toggleMenu()" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div class="nav-mobile" id="mobile-menu">
+    <a href="#features" onclick="toggleMenu()" data-id="Fitur" data-en="Features"></a>
+    <a href="#pricing" onclick="toggleMenu()" data-id="Harga" data-en="Pricing"></a>
+    <a href="#demo" onclick="toggleMenu()" data-id="Demo" data-en="Demo"></a>
+    <a href="#technology" onclick="toggleMenu()" data-id="Teknologi" data-en="Technology"></a>
+    <a href="/mitra.html" data-id="Mitra & Binaan" data-en="Partners"></a>
+    <button class="lang-toggle" onclick="toggleLang()" style="margin:0.5rem 0;">EN / ID</button>
+    <a href="https://github.com/artivisi/sawala" class="btn btn-sm btn-outline">GitHub</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <h1>
+        <span data-id="Aplikasi Sekolah Islam Terpadu" data-en="Integrated Islamic School Management"></span>
+      </h1>
+      <p class="hero-sub" data-id="White-label, open-source, satu sekolah per instalasi. Akademik, ibadah harian, hafalan Quran, dan SPP — dalam satu PWA yang tetap berfungsi tanpa sinyal." data-en="White-label, open-source, one school per deployment. Academics, daily worship, Quran memorization, and tuition billing — in one PWA that keeps working offline."></p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn btn-primary" data-id="Coba Demo Langsung" data-en="Try Live Demo"></a>
+        <a href="https://github.com/artivisi/sawala" class="btn btn-outline">GitHub</a>
+        <a href="https://artivisi.com/sawala/" class="btn btn-outline" data-id="Panduan Pengguna" data-en="User Manual"></a>
+      </div>
+    </div>
+    <div class="hero-screenshot">
+      <img src="https://artivisi.com/sawala/screenshots/beranda-wali.png" alt="Beranda Wali" loading="lazy">
+    </div>
+  </div>
+</header>
+
+<!-- Features -->
+<section id="features" class="section">
+  <div class="container">
+    <h2 class="section-title" data-id="Satu Aplikasi untuk Seluruh Sekolah" data-en="One Application for the Whole School"></h2>
+    <p class="section-sub" data-id="TU, guru, wali murid, dan siswa — masing-masing dengan tampilan dan hak aksesnya sendiri." data-en="Admin staff, teachers, parents, and students — each with their own views and access rights."></p>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 data-id="Absensi — Tetap Jalan Tanpa Sinyal" data-en="Attendance — Works Without Signal"></h3>
+        <p data-id="Input satu-ketuk (H/S/I/A) per siswa. Disimpan lokal saat offline, tersinkron otomatis saat online kembali — tanpa duplikasi. Wali melihat heatmap dan rekap." data-en="One-tap input (present/sick/excused/absent) per student. Stored locally when offline, auto-synced when back online — no duplicates. Parents see heatmaps and summaries."></p>
+        <img src="https://artivisi.com/sawala/screenshots/absensi-guru.png" alt="Absensi Guru" class="feature-screenshot" loading="lazy">
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <h3 data-id="Hafalan Quran" data-en="Quran Memorization"></h3>
+        <p data-id="Progres per surah Juz 30, riwayat setoran, nilai tajwid, status mutqin. Guru input setoran, wali dan siswa memantau progres." data-en="Per-surah Juz 30 progress, recitation history, tajwid grades, mastery status. Teachers record submissions; parents and students track progress."></p>
+        <img src="https://artivisi.com/sawala/screenshots/hafalan-wali.png" alt="Hafalan Quran" class="feature-screenshot" loading="lazy">
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        </div>
+        <h3 data-id="Mutaba'ah Yaumiyah" data-en="Daily Worship Checklist"></h3>
+        <p data-id="Checklist ibadah harian: sholat wajib & sunnah, tilawah, dzikir, adab. Streak harian menjaga kebiasaan; diisi siswa atau wali di rumah, terpantau guru." data-en="Daily worship checklist: obligatory & sunnah prayers, recitation, dhikr, manners. Daily streaks build habits; filled by students or parents at home, monitored by teachers."></p>
+        <img src="https://artivisi.com/sawala/screenshots/mutabaah-wali.png" alt="Mutabaah" class="feature-screenshot" loading="lazy">
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 data-id="SPP & Konfirmasi Pembayaran" data-en="Tuition Billing & Payment Confirmation"></h3>
+        <p data-id="Tagihan per siswa per periode, status dihitung dari pembayaran terverifikasi. Wali unggah bukti transfer, TU verifikasi satu klik — siap pakai tanpa payment gateway." data-en="Per-student, per-period billing with status derived from verified payments. Parents upload transfer proof, admin verifies in one click — usable without any payment gateway."></p>
+        <img src="https://artivisi.com/sawala/screenshots/spp-wali.png" alt="SPP" class="feature-screenshot" loading="lazy">
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <h3 data-id="Nilai & Raport" data-en="Grades & Reports"></h3>
+        <p data-id="Input nilai per mapel — keislaman dan umum — per semester. Peringkat kelas, tampilan wali dan siswa." data-en="Per-subject grade input — Islamic and general subjects — per semester. Class ranking, parent and student views."></p>
+        <img src="https://artivisi.com/sawala/screenshots/nilai-guru.png" alt="Nilai" class="feature-screenshot" loading="lazy">
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 data-id="Jadwal & Kalender Hijriah" data-en="Schedule & Hijri Calendar"></h3>
+        <p data-id="Jadwal pelajaran harian/mingguan per kelas. Kalender kegiatan sekolah dengan penanggalan Masehi dan Hijriah." data-en="Daily/weekly class schedules. School activity calendar with both Gregorian and Hijri dates."></p>
+        <img src="https://artivisi.com/sawala/screenshots/jadwal-wali.png" alt="Jadwal" class="feature-screenshot" loading="lazy">
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </div>
+        <h3 data-id="Chat Guru–Wali & Pengumuman" data-en="Teacher–Parent Chat & Announcements"></h3>
+        <p data-id="Komunikasi guru dan wali murid di dalam aplikasi — tidak tercampur grup WhatsApp. Pengumuman sekolah berkategori, bisa disematkan." data-en="Teacher–parent communication inside the app — separate from WhatsApp groups. Categorized school announcements with pinning."></p>
+        <img src="https://artivisi.com/sawala/screenshots/chat-wali.png" alt="Chat" class="feature-screenshot" loading="lazy">
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
+        </div>
+        <h3 data-id="Panel Admin Tata Usaha" data-en="Admin Panel"></h3>
+        <p data-id="CRUD lengkap: siswa, kelas, tahun ajaran, semester, mapel, pengguna, tagihan. Antrian verifikasi pembayaran satu klik." data-en="Full CRUD: students, classes, academic years, semesters, subjects, users, bills. One-click payment verification queue."></p>
+        <img src="https://artivisi.com/sawala/screenshots/admin-pembayarans-queue.png" alt="Admin" class="feature-screenshot" loading="lazy">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title" data-id="Harga" data-en="Pricing"></h2>
+    <p class="section-sub" data-id="Semua fitur di setiap paket. Harga per sekolah, bukan per pengguna — seluruh guru, wali, dan siswa termasuk. Lisensi software Rp 0 (Apache 2.0); yang Anda bayar adalah hosting, implementasi, dan support." data-en="All features at every tier. Priced per school, not per user — all teachers, parents, and students included. Software license is Rp 0 (Apache 2.0); you pay for hosting, implementation, and support."></p>
+
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Tunas</h3>
+          <p class="pricing-target" data-id="Sekolah kecil, ≤ 150 siswa" data-en="Small school, ≤ 150 students"></p>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-amount">Rp 199.000</span>
+          <span class="pricing-period" data-id="/bulan" data-en="/month"></span>
+        </div>
+        <ul class="pricing-features">
+          <li data-id="Semua fitur — tanpa pengecualian" data-en="All features — no exceptions"></li>
+          <li data-id="Guru, wali & siswa unlimited" data-en="Unlimited teachers, parents & students"></li>
+          <li data-id="Server bersama, data terisolasi" data-en="Shared server, isolated data"></li>
+          <li data-id="Subdomain atau domain sekolah" data-en="Subdomain or school's own domain"></li>
+          <li data-id="Backup harian" data-en="Daily backup"></li>
+          <li data-id="Support email (hari kerja)" data-en="Email support (business days)"></li>
+        </ul>
+        <a href="https://wa.me/6281298000468?text=Halo,%20saya%20tertarik%20dengan%20Sawala%20paket%20Tunas" class="btn btn-outline btn-block" data-id="Hubungi Kami" data-en="Contact Us"></a>
+      </div>
+
+      <div class="pricing-card pricing-card-featured">
+        <div class="pricing-badge" data-id="Paling Umum" data-en="Most Common"></div>
+        <div class="pricing-header">
+          <h3>Madya</h3>
+          <p class="pricing-target" data-id="SDIT/SMPIT, ≤ 400 siswa" data-en="Typical school, ≤ 400 students"></p>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-amount">Rp 399.000</span>
+          <span class="pricing-period" data-id="/bulan" data-en="/month"></span>
+        </div>
+        <ul class="pricing-features">
+          <li data-id="Semua fitur — tanpa pengecualian" data-en="All features — no exceptions"></li>
+          <li data-id="Guru, wali & siswa unlimited" data-en="Unlimited teachers, parents & students"></li>
+          <li data-id="Server bersama, data terisolasi" data-en="Shared server, isolated data"></li>
+          <li data-id="Subdomain atau domain sekolah" data-en="Subdomain or school's own domain"></li>
+          <li data-id="Backup harian" data-en="Daily backup"></li>
+          <li data-id="Support WhatsApp (hari yang sama)" data-en="WhatsApp support (same day)"></li>
+        </ul>
+        <a href="https://wa.me/6281298000468?text=Halo,%20saya%20tertarik%20dengan%20Sawala%20paket%20Madya" class="btn btn-primary btn-block" data-id="Hubungi Kami" data-en="Contact Us"></a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Utama</h3>
+          <p class="pricing-target" data-id="Sekolah besar, > 400 siswa" data-en="Large school, > 400 students"></p>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-amount">Rp 799.000</span>
+          <span class="pricing-period" data-id="/bulan" data-en="/month"></span>
+        </div>
+        <ul class="pricing-features">
+          <li data-id="Semua fitur — tanpa pengecualian" data-en="All features — no exceptions"></li>
+          <li data-id="Guru, wali & siswa unlimited" data-en="Unlimited teachers, parents & students"></li>
+          <li data-id="VPS dedicated untuk sekolah Anda" data-en="Dedicated VPS for your school"></li>
+          <li data-id="Domain sendiri + branding sekolah" data-en="Custom domain + school branding"></li>
+          <li data-id="Backup harian + on-demand" data-en="Daily + on-demand backup"></li>
+          <li data-id="Support prioritas WhatsApp (4 jam)" data-en="Priority WhatsApp support (4 hours)"></li>
+        </ul>
+        <a href="https://wa.me/6281298000468?text=Halo,%20saya%20tertarik%20dengan%20Sawala%20paket%20Utama" class="btn btn-outline btn-block" data-id="Hubungi Kami" data-en="Contact Us"></a>
+      </div>
+
+    </div>
+
+    <div class="pricing-notes">
+      <p data-id="Diskon tahunan: bayar 10 bulan, dapat 12 bulan. Setup & implementasi (import data siswa/kelas, pelatihan TU & guru, go-live) Rp 2,5–7,5 juta sekali bayar sesuai ukuran sekolah. Yayasan dengan ≥ 2 unit sekolah: paket bundel dengan Balaka untuk pembukuan yayasan — hubungi kami. Self-host di server sekolah sendiri: gratis selamanya (Apache 2.0), aplikasi berjalan di shared hosting cPanel biasa." data-en="Annual discount: pay 10 months, get 12. Setup & implementation (student/class data import, staff & teacher training, go-live) Rp 2.5–7.5 million one-time by school size. Foundations with ≥ 2 school units: bundle with Balaka for foundation bookkeeping — contact us. Self-hosting on your own server: free forever (Apache 2.0), runs on ordinary cPanel shared hosting."></p>
+    </div>
+
+    <div class="pricing-data-sovereignty">
+      <h3 data-id="Data Sekolah Milik Sekolah" data-en="School Data Belongs to the School"></h3>
+      <div class="data-points">
+        <div class="data-point">
+          <span class="data-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </span>
+          <span data-id="Satu sekolah, satu instance, satu database" data-en="One school, one instance, one database"></span>
+        </div>
+        <div class="data-point">
+          <span class="data-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          </span>
+          <span data-id="Ekspor data kapan saja" data-en="Export your data anytime"></span>
+        </div>
+        <div class="data-point">
+          <span class="data-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </span>
+          <span data-id="Server di Indonesia (Jakarta)" data-en="Servers in Indonesia (Jakarta)"></span>
+        </div>
+        <div class="data-point">
+          <span class="data-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </span>
+          <span data-id="Source code terbuka untuk diaudit" data-en="Open source code for auditing"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sekolah Binaan -->
+<section id="binaan" class="section">
+  <div class="container">
+    <h2 class="section-title" data-id="Program Sekolah Binaan" data-en="School Support Program"></h2>
+    <p class="section-sub" data-id="Untuk sekolah dengan SPP ≤ Rp 150 ribu/bulan atau yang beroperasi hanya dari dana BOS: kami sediakan Sawala hosted secara gratis, dengan kuota terbatas per tahun. Syaratnya satu — bersedia menjadi studi kasus dan referensi. Daftar melalui WhatsApp." data-en="For schools with tuition ≤ Rp 150K/month or operating solely on government BOS funds: we provide hosted Sawala for free, with a limited yearly quota. One condition — willingness to be a case study and reference. Apply via WhatsApp."></p>
+    <div style="text-align:center;">
+      <a href="https://wa.me/6281298000468?text=Assalamualaikum,%20kami%20ingin%20mendaftar%20Program%20Sekolah%20Binaan%20Sawala" class="btn btn-primary" data-id="Daftar Program Binaan" data-en="Apply to the Program"></a>
+    </div>
+  </div>
+</section>
+
+<!-- Demo -->
+<section id="demo" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title" data-id="Coba Demo Langsung" data-en="Try the Live Demo"></h2>
+    <p class="section-sub" data-id="Dua skenario sekolah dengan data lengkap — sekolah fiktif 'Cahaya Tauhid'. Pada instalasi nyata, nama dan identitas mengikuti sekolah Anda (white-label)." data-en="Two school scenarios with full sample data — the fictional 'Cahaya Tauhid' school. On a real deployment, the name and identity are your school's (white-label)."></p>
+
+    <div class="industry-grid" style="grid-template-columns:repeat(2,1fr);max-width:760px;margin:0 auto;">
+      <div class="industry-card">
+        <div class="industry-icon">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 14l9-5-9-5-9 5 9 5z M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+        </div>
+        <h3 data-id="SDIT Kecil" data-en="Small Elementary"></h3>
+        <p data-id="6 kelas, 120 siswa, 360 tagihan SPP. Skenario sekolah dasar Islam terpadu yang baru berkembang." data-en="6 classes, 120 students, 360 tuition bills. A growing Islamic elementary school scenario."></p>
+        <a href="https://sdit.demo.sawala.artivisi.id" target="_blank" rel="noopener" class="btn btn-sm btn-outline industry-demo" data-id="Coba Demo →" data-en="Try Demo →"></a>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        </div>
+        <h3 data-id="Yayasan SDIT + SMPIT" data-en="Foundation: Elementary + Junior High"></h3>
+        <p data-id="18 kelas (SDIT 12 + SMPIT 6), 360 siswa, 840 tagihan. Skenario yayasan dengan dua jenjang." data-en="18 classes (12 elementary + 6 junior high), 360 students, 840 bills. A two-level foundation scenario."></p>
+        <a href="https://terpadu.demo.sawala.artivisi.id" target="_blank" rel="noopener" class="btn btn-sm btn-outline industry-demo" data-id="Coba Demo →" data-en="Try Demo →"></a>
+      </div>
+    </div>
+
+    <div class="demo-creds">
+      <p class="demo-creds-lead"><span data-id="Buka demo mana pun, lalu masuk dengan salah satu akun berikut. Kata sandi semua akun:" data-en="Open either demo, then sign in with one of these accounts. Password for every account:"></span> <code class="demo-pass">demo</code></p>
+      <table class="demo-creds-table">
+        <tr>
+          <th data-id="Email" data-en="Email"></th>
+          <th data-id="Peran / hak akses" data-en="Role / access"></th>
+        </tr>
+        <tr><td><code>bunda@cahayatauhid.sch.id</code></td><td data-id="Wali murid — 3 anak, pantau absensi/nilai/hafalan, bayar SPP" data-en="Parent — 3 children, monitor attendance/grades/memorization, pay tuition"></td></tr>
+        <tr><td><code>sari@cahayatauhid.sch.id</code></td><td data-id="Guru — wali kelas 2A, input absensi, setoran hafalan, nilai" data-en="Teacher — homeroom 2A, input attendance, recitations, grades"></td></tr>
+        <tr><td><code>aisyah@cahayatauhid.sch.id</code></td><td data-id="Siswa — jadwal, tugas, mutaba'ah, hafalan sendiri" data-en="Student — own schedule, tasks, worship checklist, memorization"></td></tr>
+        <tr><td><code>admin@cahayatauhid.sch.id</code></td><td data-id="Tata Usaha — panel admin di /admin, verifikasi pembayaran" data-en="Admin staff — admin panel at /admin, payment verification"></td></tr>
+      </table>
+      <p class="demo-creds-note" data-id="Data demo direset otomatis setiap malam pukul 02:00 WIB." data-en="Demo data resets automatically every night at 02:00 WIB (UTC+7)."></p>
+    </div>
+  </div>
+</section>
+
+<!-- Technology -->
+<section id="technology" class="section">
+  <div class="container">
+    <h2 class="section-title" data-id="Teknologi" data-en="Technology"></h2>
+    <p class="section-sub" data-id="Dirancang untuk biaya operasional serendah mungkin: berjalan di shared hosting cPanel biasa — tanpa server khusus, tanpa biaya cloud yang mahal." data-en="Designed for the lowest possible operating cost: runs on ordinary cPanel shared hosting — no special servers, no expensive cloud bills."></p>
+
+    <div class="arch-diagram">
+      <div class="arch-layer">
+        <div class="arch-label">Frontend</div>
+        <div class="arch-items">
+          <span class="arch-badge">Blade (SSR)</span>
+          <span class="arch-badge">htmx</span>
+          <span class="arch-badge">Alpine.js (CSP build)</span>
+          <span class="arch-badge">Tailwind CSS</span>
+        </div>
+      </div>
+      <div class="arch-arrow">&darr;</div>
+      <div class="arch-layer">
+        <div class="arch-label">Backend</div>
+        <div class="arch-items">
+          <span class="arch-badge accent">Laravel</span>
+          <span class="arch-badge accent">PHP 8.3+</span>
+          <span class="arch-badge accent">Filament Admin</span>
+        </div>
+      </div>
+      <div class="arch-arrow">&darr;</div>
+      <div class="arch-layer">
+        <div class="arch-label">Data</div>
+        <div class="arch-items">
+          <span class="arch-badge dark">MySQL / MariaDB</span>
+          <span class="arch-badge dark">S3-compatible media</span>
+        </div>
+      </div>
+      <div class="arch-arrow">&darr;</div>
+      <div class="arch-layer">
+        <div class="arch-label">PWA</div>
+        <div class="arch-items">
+          <span class="arch-badge">Installable di Android & iOS</span>
+          <span class="arch-badge">Cache baca offline</span>
+          <span class="arch-badge">Antrian absensi offline (IndexedDB)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <h3 data-id="Teruji Otomatis" data-en="Automatically Tested"></h3>
+        <ul>
+          <li><strong>Pest</strong> <span data-id="— feature & unit test di MySQL asli, bukan mock" data-en="— feature & unit tests on real MySQL, no mocks"></span></li>
+          <li><strong>Playwright</strong> <span data-id="— E2E di browser nyata, termasuk skenario offline" data-en="— E2E in a real browser, including offline scenarios"></span></li>
+          <li><strong>Larastan</strong> <span data-id="— static analysis level maksimum, 0 error" data-en="— static analysis at max level, 0 errors"></span></li>
+        </ul>
+      </div>
+      <div class="tech-card">
+        <h3 data-id="Dokumentasi Otomatis" data-en="Automated Documentation"></h3>
+        <ul>
+          <li><strong data-id="Panduan pengguna" data-en="User manual"></strong> <span data-id="— 23 bab per peran, screenshot di-generate otomatis" data-en="— 23 chapters per role, auto-generated screenshots"></span></li>
+          <li><strong>GitHub Pages</strong> <span data-id="— publish otomatis saat update" data-en="— auto-publish on update"></span></li>
+        </ul>
+      </div>
+      <div class="tech-card">
+        <h3 data-id="Ekosistem Terbuka" data-en="Open Ecosystem"></h3>
+        <ul>
+          <li><strong>Balaka</strong> <span data-id="— pembukuan yayasan; posting jurnal otomatis via REST" data-en="— foundation bookkeeping; automatic journal posting via REST"></span></li>
+          <li><strong>SNAP Gateway</strong> <span data-id="— VA/QRIS bank syariah, biaya flat per transaksi, bukan persentase" data-en="— Islamic bank VA/QRIS, flat per-transaction fee, not a percentage"></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Security -->
+<section id="security" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title" data-id="Keamanan" data-en="Security"></h2>
+    <p class="section-sub" data-id="Data anak dan keuangan sekolah dijaga dengan standar yang sama seperti aplikasi finansial kami." data-en="Children's data and school finances protected to the same standard as our financial applications."></p>
+
+    <div class="security-grid">
+      <div class="security-card">
+        <h3 data-id="Keamanan Aplikasi" data-en="Application Security"></h3>
+        <ul>
+          <li data-id="Content Security Policy ketat — tanpa inline script" data-en="Strict Content Security Policy — no inline scripts"></li>
+          <li data-id="4 peran akses (wali, siswa, guru, admin), ditegakkan di server" data-en="4 access roles (parent, student, teacher, admin), enforced server-side"></li>
+          <li data-id="Rate limiting per IP, CSRF protection" data-en="Per-IP rate limiting, CSRF protection"></li>
+          <li data-id="Bukti transfer hanya bisa diakses pemiliknya & TU" data-en="Transfer proofs accessible only to their owner & admin"></li>
+        </ul>
+      </div>
+      <div class="security-card">
+        <h3 data-id="Integritas Data" data-en="Data Integrity"></h3>
+        <ul>
+          <li data-id="Uang dalam rupiah bulat — tanpa pembulatan float" data-en="Money in integer rupiah — no float rounding"></li>
+          <li data-id="Status SPP dihitung dari pembayaran terverifikasi, bukan di-set manual" data-en="Tuition status derived from verified payments, never set by hand"></li>
+          <li data-id="Sinkronisasi offline idempoten — replay tidak menduplikasi absensi" data-en="Idempotent offline sync — replays never duplicate attendance"></li>
+        </ul>
+      </div>
+      <div class="security-card">
+        <h3 data-id="Transparansi" data-en="Transparency"></h3>
+        <ul>
+          <li data-id="Source code terbuka (Apache 2.0) — bisa diaudit siapa saja" data-en="Open source (Apache 2.0) — auditable by anyone"></li>
+          <li data-id="Tidak ada vendor lock-in: ekspor data, atau pindah self-host kapan saja" data-en="No vendor lock-in: export data, or move to self-hosting anytime"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section">
+  <div class="container cta-inner">
+    <h2 data-id="Siap untuk Tahun Ajaran Baru?" data-en="Ready for the New Academic Year?"></h2>
+    <p data-id="Coba demo, atau hubungi kami — instance sekolah Anda siap dalam hitungan hari." data-en="Try the demo, or contact us — your school's instance is ready in days."></p>
+    <div class="cta-actions">
+      <a href="https://wa.me/6281298000468?text=Halo,%20saya%20tertarik%20dengan%20Sawala" class="btn btn-primary btn-lg" data-id="Hubungi via WhatsApp" data-en="Contact via WhatsApp"></a>
+      <a href="https://github.com/artivisi/sawala" class="btn btn-outline btn-lg" data-id="Lihat di GitHub" data-en="View on GitHub"></a>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/6281298000468?text=Halo,%20saya%20tertarik%20dengan%20Sawala" class="wa-float" aria-label="Chat WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="logo-full-dark.svg" alt="Sawala" height="28">
+      <p data-id="Aplikasi sekolah Islam terpadu, white-label dan open-source." data-en="White-label, open-source integrated Islamic school management."></p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4 data-id="Produk" data-en="Product"></h4>
+        <a href="https://artivisi.com/sawala/" data-id="Panduan Pengguna" data-en="User Manual"></a>
+        <a href="https://github.com/artivisi/sawala">GitHub</a>
+        <a href="/mitra.html" data-id="Mitra & Sekolah Binaan" data-en="Partners & School Program"></a>
+        <a href="/pitch.html" data-id="Pitch Deck" data-en="Pitch Deck"></a>
+      </div>
+      <div>
+        <h4 data-id="Perusahaan" data-en="Company"></h4>
+        <a href="https://artivisi.com">Artivisi</a>
+        <a href="https://balaka.id">Balaka</a>
+        <a href="mailto:info@artivisi.com">info@artivisi.com</a>
+        <a href="https://wa.me/6281298000468">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Apache License 2.0 &middot; &copy; 2026 <a href="https://artivisi.com">PT Artivisi Intermedia</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+let lang = (new URLSearchParams(location.search).get('lang')) || localStorage.getItem('sawala-lang') || 'id';
+applyLang(lang);
+
+function toggleLang() {
+  lang = lang === 'id' ? 'en' : 'id';
+  applyLang(lang);
+}
+
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem('sawala-lang', l);
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-id]').forEach(el => {
+    const text = el.getAttribute('data-' + l);
+    if (text) el.textContent = text;
+  });
+  const url = new URL(location);
+  url.searchParams.set('lang', l);
+  history.replaceState(null, '', url);
+}
+
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>

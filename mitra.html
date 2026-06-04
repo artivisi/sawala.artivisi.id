@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitra, Yayasan & Sekolah Binaan — Sawala</title>
+<meta name="description" content="Program mitra implementor, paket yayasan & jaringan sekolah, dan Program Sekolah Binaan untuk Sawala.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Page-specific styles */
+  .ref-hero {
+    padding: 4rem 0 3rem;
+    background: linear-gradient(135deg, var(--brand-50) 0%, #faf8f3 60%);
+    text-align: center;
+  }
+  .ref-hero h1 { font-size: 2.25rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.75rem; }
+  .ref-hero p { font-size: 1.05rem; color: var(--slate-600); max-width: 640px; margin: 0 auto; }
+
+  .program-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  .program-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius);
+    padding: 2rem;
+  }
+  .program-card.full { grid-column: 1 / -1; }
+  .program-card h2 { font-size: 1.25rem; font-weight: 700; color: var(--brand); margin-bottom: 0.5rem; }
+  .program-card .subtitle { font-size: 0.9rem; color: var(--slate-500); margin-bottom: 1.25rem; }
+  .program-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--slate-800); margin: 1.25rem 0 0.5rem; }
+
+  .commission-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
+  .commission-table th, .commission-table td { padding: 0.5rem 0.75rem; text-align: left; border: 1px solid var(--slate-200); }
+  .commission-table th { background: var(--brand-50); font-weight: 600; font-size: 0.8rem; color: var(--brand); }
+  .commission-table td { color: var(--slate-600); }
+
+  .highlight-box {
+    background: var(--brand-50);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+  .highlight-box .amount { font-size: 1.5rem; font-weight: 700; color: var(--brand); }
+  .highlight-box .label { font-size: 0.8rem; color: var(--slate-500); }
+
+  .steps-list { counter-reset: step; padding: 0; }
+  .steps-list li {
+    counter-increment: step;
+    padding: 0.5rem 0 0.5rem 2.5rem;
+    position: relative;
+    font-size: 0.9rem;
+    color: var(--slate-600);
+  }
+  .steps-list li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.45rem;
+    width: 24px;
+    height: 24px;
+    background: var(--brand);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ref-cta {
+    text-align: center;
+    padding: 3rem 0;
+  }
+  .ref-cta h2 { font-size: 1.5rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.75rem; }
+  .ref-cta p { color: var(--slate-500); margin-bottom: 1.5rem; }
+
+  @media (max-width: 768px) {
+    .program-grid { grid-template-columns: 1fr; }
+    .ref-hero h1 { font-size: 1.5rem; }
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    .ref-hero { background: linear-gradient(135deg, #1d2114 0%, #0f1218 60%); }
+    .ref-hero h1 { color: #e8ecf2; }
+    .ref-hero p { color: #a0aab8; }
+    .program-card { background: #1a1f2b; border-color: #2a3040; }
+    .program-card h2 { color: #a9b87f; }
+    .program-card .subtitle { color: #8090a4; }
+    .program-card h3 { color: #e8ecf2; }
+    .commission-table th { background: #252b18; color: #a9b87f; border-color: #2a3040; }
+    .commission-table td { color: #a0aab8; border-color: #2a3040; }
+    .highlight-box { background: #252b18; }
+    .highlight-box .amount { color: #a9b87f; }
+    .highlight-box .label { color: #8090a4; }
+    .steps-list li { color: #a0aab8; }
+    .ref-cta h2 { color: #e8ecf2; }
+    .ref-cta p { color: #8090a4; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav (same as main site) -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="logo-full.svg" alt="Sawala" height="32" class="logo-light">
+      <img src="logo-full-dark.svg" alt="Sawala" height="32" class="logo-dark">
+    </a>
+    <div class="nav-links">
+      <a href="/#features">Fitur</a>
+      <a href="/#pricing">Harga</a>
+      <a href="/mitra.html">Mitra & Binaan</a>
+      <a href="https://github.com/artivisi/sawala" class="btn btn-sm btn-outline">GitHub</a>
+    </div>
+    <button class="nav-menu-btn" onclick="toggleMenu()" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div class="nav-mobile" id="mobile-menu">
+    <a href="/#features" onclick="toggleMenu()">Fitur</a>
+    <a href="/#pricing" onclick="toggleMenu()">Harga</a>
+    <a href="/mitra.html" onclick="toggleMenu()">Mitra & Binaan</a>
+    <a href="https://github.com/artivisi/sawala" class="btn btn-sm btn-outline">GitHub</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="ref-hero">
+  <div class="container">
+    <h1>Mitra, Yayasan & Sekolah Binaan</h1>
+    <p>Tiga jalur kerja sama: mitra implementor yang melayani beberapa sekolah, paket untuk yayasan dan jaringan sekolah, serta program gratis untuk sekolah dhuafa.</p>
+  </div>
+</header>
+
+<!-- Programs -->
+<section class="section">
+  <div class="container">
+    <div class="program-grid">
+
+      <!-- Mitra Implementor -->
+      <div class="program-card">
+        <h2>Mitra Implementor</h2>
+        <p class="subtitle">Untuk konsultan IT & penyedia jasa operasional sekolah</p>
+
+        <p style="font-size:0.9rem;color:var(--slate-600);">Ambil instance Sawala dengan harga mitra, layani sekolah dengan harga yang Anda tentukan sendiri. Anda tangani pendampingan sekolah, kami tangani server.</p>
+
+        <h3>Harga Mitra</h3>
+        <table class="commission-table">
+          <tr><th>Item</th><th>Detail</th></tr>
+          <tr><td>Harga per sekolah</td><td><strong>Rp 150.000/bulan</strong></td></tr>
+          <tr><td>Minimum</td><td>5 sekolah</td></tr>
+          <tr><td>Harga jual</td><td>Anda tentukan sendiri</td></tr>
+          <tr><td>White-label per sekolah</td><td>Termasuk</td></tr>
+        </table>
+
+        <h3>Simulasi (jual Rp 399K/sekolah)</h3>
+        <table class="commission-table">
+          <tr><th>Sekolah</th><th>Bayar ke ArtiVisi</th><th>Margin Anda/bln</th></tr>
+          <tr><td>5</td><td>Rp 750K</td><td><strong>Rp 1.245.000</strong></td></tr>
+          <tr><td>10</td><td>Rp 1.500K</td><td><strong>Rp 2.490.000</strong></td></tr>
+          <tr><td>20</td><td>Rp 3.000K</td><td><strong>Rp 4.980.000</strong></td></tr>
+        </table>
+
+        <h3>Yang Anda Dapat</h3>
+        <ul style="font-size:0.85rem;color:var(--slate-600);padding-left:1.25rem;">
+          <li style="padding:0.25rem 0;list-style:disc;">Nama & identitas sekolah per instance (white-label)</li>
+          <li style="padding:0.25rem 0;list-style:disc;">Akun admin di setiap instance</li>
+          <li style="padding:0.25rem 0;list-style:disc;">Materi pemasaran, pitch deck, akses demo</li>
+          <li style="padding:0.25rem 0;list-style:disc;">Grup WhatsApp khusus mitra</li>
+          <li style="padding:0.25rem 0;list-style:disc;">Data terisolasi penuh per sekolah</li>
+        </ul>
+
+        <h3>Cara Bergabung</h3>
+        <ol class="steps-list">
+          <li>Hubungi kami via WhatsApp</li>
+          <li>Diskusi kebutuhan dan jumlah sekolah</li>
+          <li>Tanda tangan perjanjian kerjasama</li>
+          <li>Mulai onboarding sekolah pertama</li>
+        </ol>
+      </div>
+
+      <!-- Yayasan & Jaringan -->
+      <div class="program-card">
+        <h2>Paket Yayasan & Jaringan</h2>
+        <p class="subtitle">Untuk yayasan multi-unit dan jaringan sekolah</p>
+
+        <p style="font-size:0.9rem;color:var(--slate-600);">Setiap unit sekolah mendapat instance sendiri — data per sekolah tetap terpisah. Konsolidasi keuangan yayasan dilakukan di <a href="https://balaka.id">Balaka</a>, aplikasi akunting kami: setiap pembayaran SPP terverifikasi diposting otomatis sebagai jurnal.</p>
+
+        <h3>Paket Yayasan (≥ 2 unit)</h3>
+        <table class="commission-table">
+          <tr><th>Komponen</th><th>Detail</th></tr>
+          <tr><td>Sawala per unit sekolah</td><td>Sesuai tier ukuran (Tunas/Madya/Utama)</td></tr>
+          <tr><td>Balaka hosted untuk yayasan</td><td>Pembukuan, pajak, payroll yayasan</td></tr>
+          <tr><td>Diskon bundel</td><td><strong>~15%</strong> dari total</td></tr>
+        </table>
+
+        <h3>Jaringan Sekolah (≥ 10 unit)</h3>
+        <table class="commission-table">
+          <tr><th>Item</th><th>Detail</th></tr>
+          <tr><td>Harga per unit</td><td><strong>Rp 150.000/bulan</strong></td></tr>
+          <tr><td>Perjanjian</td><td>Master agreement dengan pusat</td></tr>
+          <tr><td>Penagihan</td><td>Terpusat atau per cabang</td></tr>
+        </table>
+
+        <div class="highlight-box">
+          <div class="amount">1 yayasan = 1 kesepakatan</div>
+          <div class="label">unit sekolah, pembukuan yayasan, dan jalur pembayaran SPP dalam satu paket</div>
+        </div>
+
+        <h3>Cara Memulai</h3>
+        <ol class="steps-list">
+          <li>Hubungi kami via WhatsApp</li>
+          <li>Pemetaan unit sekolah & kebutuhan yayasan</li>
+          <li>Pilot di satu unit sekolah</li>
+          <li>Rollout bertahap ke seluruh unit</li>
+        </ol>
+      </div>
+
+      <!-- Sekolah Binaan -->
+      <div class="program-card full">
+        <h2>Program Sekolah Binaan</h2>
+        <p class="subtitle">Gratis untuk sekolah dhuafa — kuota terbatas per tahun</p>
+
+        <p style="font-size:0.9rem;color:var(--slate-600);">Kami menyediakan Sawala hosted secara gratis untuk sekolah yang benar-benar membutuhkan. Bukan paket diskon — ini program dengan seleksi.</p>
+
+        <h3>Kriteria</h3>
+        <ul style="font-size:0.85rem;color:var(--slate-600);padding-left:1.25rem;">
+          <li style="padding:0.25rem 0;list-style:disc;">SPP ≤ Rp 150.000/bulan, atau sekolah beroperasi hanya dari dana BOS</li>
+          <li style="padding:0.25rem 0;list-style:disc;">Bersedia menjadi studi kasus dan referensi bagi sekolah lain</li>
+          <li style="padding:0.25rem 0;list-style:disc;">Ada satu orang TU/guru yang sanggup menjadi admin aplikasi</li>
+        </ul>
+
+        <h3>Yang Didapat</h3>
+        <ul style="font-size:0.85rem;color:var(--slate-600);padding-left:1.25rem;">
+          <li style="padding:0.25rem 0;list-style:disc;">Instance Sawala hosted gratis — semua fitur, tanpa batas waktu</li>
+          <li style="padding:0.25rem 0;list-style:disc;">Onboarding mandiri dengan panduan pengguna lengkap</li>
+          <li style="padding:0.25rem 0;list-style:disc;">Support melalui email & komunitas</li>
+        </ul>
+
+        <p style="font-size:0.85rem;color:var(--slate-500);margin-top:1rem;">Kuota terbatas per tahun. Pendaftaran melalui WhatsApp — ceritakan kondisi sekolah Anda, kami tindak lanjuti.</p>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="ref-cta">
+      <h2>Tertarik Bekerja Sama?</h2>
+      <p>Hubungi kami untuk diskusi lebih lanjut. Tidak ada biaya pendaftaran.</p>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+        <a href="https://wa.me/6281298000468?text=Halo,%20saya%20tertarik%20program%20kerja%20sama%20Sawala" class="btn btn-primary btn-lg">WhatsApp</a>
+        <a href="mailto:info@artivisi.com?subject=Kerja%20Sama%20Sawala" class="btn btn-outline btn-lg">Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer (same as main site) -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="logo-full-dark.svg" alt="Sawala" height="28">
+      <p>Aplikasi sekolah Islam terpadu, white-label dan open-source.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Produk</h4>
+        <a href="https://artivisi.com/sawala/">Panduan Pengguna</a>
+        <a href="https://github.com/artivisi/sawala">GitHub</a>
+        <a href="/pitch.html">Pitch Deck</a>
+      </div>
+      <div>
+        <h4>Perusahaan</h4>
+        <a href="https://artivisi.com">Artivisi</a>
+        <a href="https://balaka.id">Balaka</a>
+        <a href="mailto:info@artivisi.com">info@artivisi.com</a>
+        <a href="https://wa.me/6281298000468">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Apache License 2.0 &middot; &copy; 2026 <a href="https://artivisi.com">PT Artivisi Intermedia</a></p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/6281298000468?text=Halo,%20saya%20tertarik%20program%20kerja%20sama%20Sawala" class="wa-float" aria-label="Chat WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+</script>
+</body>
+</html>

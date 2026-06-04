@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="448" viewBox="0 0 120 120">
+  <style>
+    .star { fill: #5c6b3d; }
+    .ring { fill: #faf8f3; }
+    .dot { fill: #b5562f; }
+    @media (prefers-color-scheme: dark) {
+      .star { fill: #a9b87f; }
+      .ring { fill: #1d2114; }
+      .dot { fill: #d98a64; }
+    }
+  </style>
+  <g class="star">
+    <rect x="22" y="22" width="76" height="76" rx="6"/>
+    <rect x="22" y="22" width="76" height="76" rx="6" transform="rotate(45 60 60)"/>
+  </g>
+  <circle class="ring" cx="60" cy="60" r="17"/>
+  <circle class="dot" cx="60" cy="60" r="9"/>
+</svg>

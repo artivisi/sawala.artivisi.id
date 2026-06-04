@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sawala — Pitch Deck</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #5C6B3D;
+    --brand-light: #74874E;
+    --brand-dark: #454F2D;
+    --brand-50: #eff1e6;
+    --accent: #D98A64;
+    --accent-dark: #B5562F;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-800: #1e293b;
+    --slate-900: #0f172a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: #0f1218;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Slide container */
+  .slides { height: 100vh; width: 100vw; position: relative; }
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 6rem 4rem;
+    overflow: hidden;
+  }
+  .slide .cols { max-height: calc(100vh - 10rem); overflow: hidden; }
+  .slide.active { display: flex; }
+
+  /* Slide backgrounds */
+  .slide-brand {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+  }
+  .slide-dark {
+    background: #0f1218;
+  }
+  .slide-light {
+    background: #faf8f3;
+    color: var(--slate-800);
+  }
+
+  /* Typography */
+  h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+  h2 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .subtitle { font-size: 1.25rem; opacity: 0.8; max-width: 700px; line-height: 1.6; }
+  .small { font-size: 0.85rem; opacity: 0.6; }
+  .small code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: rgba(255,255,255,0.12); border-radius: 5px; padding: 0.08em 0.45em; color: #fff; opacity: 1; font-size: 0.92em; }
+  .accent { color: var(--accent); }
+  .brand-text { color: var(--brand-light); }
+
+  /* Two-column layout */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .cols-60-40 { grid-template-columns: 1.5fr 1fr; }
+  .cols-40-60 { grid-template-columns: 1fr 1.5fr; }
+
+  /* Lists */
+  .check-list { list-style: none; padding: 0; }
+  .check-list li {
+    padding: 0.5rem 0 0.5rem 2rem;
+    position: relative;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  .check-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .bullet-list { list-style: none; padding: 0; }
+  .bullet-list li {
+    padding: 0.4rem 0 0.4rem 1.5rem;
+    position: relative;
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  .bullet-list li::before {
+    content: '\2022';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+
+  /* Screenshots */
+  .screenshot {
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    max-height: 55vh;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .screenshot-sm {
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    max-height: 28vh;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+  .screenshot-grid .screenshot-sm { max-height: 52vh; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td { padding: 0.6rem 1rem; text-align: left; }
+  th { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .table-dark th { border-bottom: 2px solid rgba(255,255,255,0.2); color: var(--accent); }
+  .table-dark td { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+  /* Price cards */
+  .price-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .price-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .price-card.featured {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(217,138,100,0.15);
+  }
+  .price-card h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .price-card .target { font-size: 0.8rem; opacity: 0.6; margin-bottom: 1rem; }
+  .price-card .price { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .price-card .period { font-size: 0.85rem; opacity: 0.6; margin-bottom: 1rem; }
+  .price-card .feature { font-size: 0.8rem; opacity: 0.7; padding: 0.2rem 0; }
+  .price-card .feature strong { color: var(--accent); opacity: 1; }
+
+  /* Navigation */
+  .nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    background: rgba(15,18,24,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    font-size: 0.8rem;
+  }
+  .nav-bar .logo { height: 20px; opacity: 0.6; }
+  .nav-bar .counter { opacity: 0.4; }
+  .nav-bar .controls { display: flex; gap: 0.5rem; }
+  .nav-bar button {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    border-radius: 6px;
+    padding: 0.35rem 1rem;
+    font-family: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .nav-bar button:hover { background: rgba(255,255,255,0.2); }
+  .mode-selector { display: flex; gap: 2px; background: rgba(255,255,255,0.05); border-radius: 6px; padding: 2px; }
+  .mode-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    border-radius: 4px;
+    padding: 0.3rem 0.75rem;
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+  }
+  .mode-btn:hover { color: rgba(255,255,255,0.7); }
+  .mode-btn.active { background: rgba(255,255,255,0.15); color: white; }
+
+  /* Fullscreen hint */
+  .fs-hint {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    opacity: 0.3;
+    z-index: 100;
+  }
+</style>
+</head>
+<body>
+
+<div class="slides">
+
+  <!-- Slide 1: Cover -->
+  <div class="slide slide-brand active" id="s1">
+    <div>
+      <img src="logo-full-dark.svg" alt="Sawala" height="48" style="margin-bottom:2rem;">
+      <h1>Aplikasi Sekolah<br>Islam Terpadu</h1>
+      <p class="subtitle">Akademik, ibadah harian, hafalan Quran, dan SPP — satu aplikasi atas nama sekolah Anda.</p>
+      <p class="small" style="margin-top:2rem;">PT Artivisi Intermedia &middot; sawala.artivisi.id</p>
+    </div>
+  </div>
+
+  <!-- Slide 2: Problem -->
+  <div class="slide slide-dark" id="s2">
+    <h2>Operasional Sekolah<br>Masih <span class="accent">Tercecer</span></h2>
+    <ul class="bullet-list" style="max-width:720px;">
+      <li>Absensi di kertas, direkap manual ke Excel tiap akhir bulan</li>
+      <li>Penagihan SPP lewat grup WhatsApp; bukti transfer tercampur ribuan chat, dicocokkan manual</li>
+      <li>Catatan hafalan & mutaba'ah di buku tulis — wali tidak pernah melihat progres anaknya</li>
+      <li>Komunikasi guru–wali bercampur di grup WA: pengumuman tenggelam, jam pribadi terganggu</li>
+      <li>Aplikasi sekolah komersial: per-siswa per-bulan, fitur keislaman tidak ada, data di vendor</li>
+    </ul>
+  </div>
+
+  <!-- Slide 3: Solution -->
+  <div class="slide slide-dark" id="s3">
+    <div class="cols cols-60-40">
+      <div>
+        <h2>Satu Aplikasi,<br><span class="accent">Atas Nama Sekolah Anda</span></h2>
+        <ul class="check-list">
+          <li>Absensi sekali ketuk — tetap jalan tanpa sinyal</li>
+          <li>Hafalan Quran: setoran, tajwid, progres per surah</li>
+          <li>Mutaba'ah yaumiyah dengan streak harian</li>
+          <li>Nilai & raport, jadwal, tugas, kalender Hijriah</li>
+          <li>SPP: tagihan, bukti transfer, verifikasi satu klik</li>
+          <li>Chat guru–wali terpisah dari WhatsApp pribadi</li>
+        </ul>
+        <p class="small" style="margin-top:1rem;">White-label: nama, logo, dan domain milik sekolah. Bukan akun di platform orang lain.</p>
+      </div>
+      <div>
+        <img src="https://artivisi.com/sawala/screenshots/beranda-wali.png" alt="Beranda Wali" class="screenshot">
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Screenshots -->
+  <div class="slide slide-dark" id="s4">
+    <h2>Dari Mata <span class="accent">Wali Murid</span></h2>
+    <div class="screenshot-grid" style="margin-top:1rem;">
+      <img src="https://artivisi.com/sawala/screenshots/absensi-wali.png" alt="Absensi" class="screenshot-sm">
+      <img src="https://artivisi.com/sawala/screenshots/hafalan-wali.png" alt="Hafalan" class="screenshot-sm">
+      <img src="https://artivisi.com/sawala/screenshots/mutabaah-wali.png" alt="Mutabaah" class="screenshot-sm">
+      <img src="https://artivisi.com/sawala/screenshots/spp-wali.png" alt="SPP" class="screenshot-sm">
+    </div>
+    <p class="small" style="margin-top:1rem;text-align:center;">Kehadiran &middot; hafalan &middot; ibadah harian &middot; tagihan — semua anak, satu genggaman.</p>
+  </div>
+
+  <!-- Slide 5: SPP workflow -->
+  <div class="slide slide-dark" id="s5">
+    <div class="cols cols-60-40">
+      <div>
+        <h2>SPP Tanpa<br><span class="accent">Rekap Manual</span></h2>
+        <ul class="check-list">
+          <li>Tagihan per siswa per periode, dibuat massal oleh TU</li>
+          <li>Wali melihat status: Lunas / Sebagian / Belum Bayar</li>
+          <li>Wali unggah bukti transfer dari aplikasi</li>
+          <li>TU verifikasi satu klik — status terhitung otomatis</li>
+          <li>Siap pakai hari ini, tanpa payment gateway</li>
+        </ul>
+        <p class="small" style="margin-top:1rem;">Tahap berikutnya: Virtual Account & QRIS bank syariah — biaya flat per transaksi, bukan persentase dari SPP.</p>
+      </div>
+      <div>
+        <img src="https://artivisi.com/sawala/screenshots/admin-pembayarans-queue.png" alt="Verifikasi Pembayaran" class="screenshot">
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Offline -->
+  <div class="slide slide-dark" id="s6">
+    <div class="cols cols-40-60">
+      <div>
+        <img src="https://artivisi.com/sawala/screenshots/absensi-guru.png" alt="Absensi Guru" class="screenshot">
+      </div>
+      <div>
+        <h2>Sinyal Hilang,<br><span class="accent">Absensi Tetap Jalan</span></h2>
+        <ul class="check-list">
+          <li>Terpasang seperti aplikasi biasa di Android & iPhone (PWA)</li>
+          <li>Guru tetap mengabsen saat internet mati</li>
+          <li>Data tersimpan di perangkat, terkirim otomatis saat online</li>
+          <li>Kiriman ulang tidak pernah menduplikasi data</li>
+        </ul>
+        <p class="small" style="margin-top:1rem;">Dirancang untuk kondisi nyata sekolah Indonesia — bukan asumsi internet kantor pusat.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Ecosystem -->
+  <div class="slide slide-dark" id="s7">
+    <h2>Satu Ekosistem, <span class="accent">Tugas Terpisah</span></h2>
+    <p class="subtitle" style="margin-bottom:1.5rem;">Sawala sengaja fokus pada operasional sekolah. Pembukuan dan pembayaran ditangani produk pendamping — terhubung otomatis.</p>
+    <table class="table-dark" style="max-width:880px;">
+      <tr><th>Kebutuhan</th><th>Produk</th><th>Hubungan</th></tr>
+      <tr><td>Operasional sekolah & SPP</td><td style="color:var(--accent);font-weight:600;">Sawala</td><td>Aplikasi harian TU, guru, wali, siswa</td></tr>
+      <tr><td>Pembukuan, pajak, payroll yayasan</td><td>Balaka</td><td>Pembayaran terverifikasi → jurnal otomatis</td></tr>
+      <tr><td>Penerimaan VA / QRIS</td><td>SNAP Payment Gateway</td><td>Wali bayar → bank syariah → status lunas otomatis</td></tr>
+    </table>
+    <p class="small" style="margin-top:1.5rem;">Semua open source (Apache 2.0). Sekolah bisa mulai dari Sawala saja, menambah komponen lain saat siap.</p>
+  </div>
+
+  <!-- Slide 8: Pricing -->
+  <div class="slide slide-dark" id="s8">
+    <h2 style="text-align:center;">Harga per Sekolah, <span class="accent">Bukan per Siswa</span></h2>
+    <p style="text-align:center;opacity:0.6;margin-bottom:2rem;">Semua fitur di setiap paket. Seluruh guru, wali, dan siswa termasuk. Lisensi Rp 0 (Apache 2.0).</p>
+    <div class="price-cards">
+      <div class="price-card">
+        <h3>Tunas</h3>
+        <div class="target">≤ 150 siswa</div>
+        <div class="price">Rp 199.000</div>
+        <div class="period">/bulan</div>
+        <div class="feature"><strong>Semua fitur</strong></div>
+        <div class="feature">Pengguna unlimited</div>
+        <div class="feature">Server bersama</div>
+        <div class="feature">Email support</div>
+      </div>
+      <div class="price-card featured">
+        <h3>Madya</h3>
+        <div class="target">≤ 400 siswa</div>
+        <div class="price">Rp 399.000</div>
+        <div class="period">/bulan</div>
+        <div class="feature"><strong>Semua fitur</strong></div>
+        <div class="feature">Pengguna unlimited</div>
+        <div class="feature">Server bersama</div>
+        <div class="feature">WhatsApp support (same day)</div>
+      </div>
+      <div class="price-card">
+        <h3>Utama</h3>
+        <div class="target">&gt; 400 siswa</div>
+        <div class="price">Rp 799.000</div>
+        <div class="period">/bulan</div>
+        <div class="feature"><strong>Semua fitur</strong></div>
+        <div class="feature">Pengguna unlimited</div>
+        <div class="feature">VPS dedicated</div>
+        <div class="feature">WhatsApp prioritas (4 jam)</div>
+      </div>
+    </div>
+    <p style="text-align:center;opacity:0.4;margin-top:1.5rem;font-size:0.85rem;">Tahunan: bayar 10 bulan dapat 12 &middot; Setup & pelatihan Rp 2,5–7,5 jt sekali bayar &middot; Self-host: gratis selamanya</p>
+  </div>
+
+  <!-- Slide 9: Demos -->
+  <div class="slide slide-dark" id="s9">
+    <h2>Coba Langsung — <span class="accent">2 Demo Online</span></h2>
+    <div class="cols" style="margin-top:1rem;">
+      <div>
+        <table class="table-dark">
+          <tr><th>Skenario</th><th>Demo Online</th></tr>
+          <tr><td><strong>SDIT kecil</strong> (6 kelas, 120 siswa)</td><td><a href="https://sdit.demo.sawala.artivisi.id" target="_blank" style="color:#bcca93;">sdit.demo.sawala.artivisi.id</a></td></tr>
+          <tr><td><strong>Yayasan SDIT+SMPIT</strong> (18 kelas, 360 siswa)</td><td><a href="https://terpadu.demo.sawala.artivisi.id" target="_blank" style="color:#bcca93;">terpadu.demo.sawala.artivisi.id</a></td></tr>
+        </table>
+        <p class="small" style="margin-top:1rem;"><strong>Akun:</strong> <code>bunda@…</code> (wali, 3 anak) · <code>sari@…</code> (guru) · <code>aisyah@…</code> (siswa) · <code>admin@…</code> (TU, panel <code>/admin</code>) — domain <code>cahayatauhid.sch.id</code>.<br><strong>Kata sandi</strong> semua akun: <code>demo</code>.<br>"Cahaya Tauhid" adalah sekolah fiktif; di instalasi nyata identitas mengikuti sekolah Anda. Reset otomatis tiap malam 02:00 WIB.</p>
+      </div>
+      <div>
+        <img src="https://artivisi.com/sawala/screenshots/beranda-guru.png" alt="Beranda Guru" class="screenshot">
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 10: Security & Quality -->
+  <div class="slide slide-dark" id="s10">
+    <div class="cols cols-60-40">
+      <div>
+        <h2>Standar Aplikasi Finansial,<br><span class="accent">untuk Sekolah</span></h2>
+        <ul class="check-list">
+          <li>Source code terbuka — bisa diaudit siapa saja</li>
+          <li>Test otomatis: logika + browser nyata (termasuk skenario offline)</li>
+          <li>Static analysis level maksimum, 0 error</li>
+          <li>Uang dalam rupiah bulat — tanpa pembulatan float</li>
+          <li>Status SPP dihitung dari pembayaran terverifikasi, bukan di-set tangan</li>
+          <li>4 peran akses, ditegakkan di server — bukan hanya disembunyikan di tampilan</li>
+        </ul>
+      </div>
+      <div>
+        <img src="https://artivisi.com/sawala/screenshots/nilai-guru.png" alt="Input Nilai" class="screenshot">
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 11: About -->
+  <div class="slide slide-dark" id="s11">
+    <h2>Tentang <span class="accent">ArtiVisi</span></h2>
+    <div class="cols cols-60-40">
+      <div>
+        <ul class="bullet-list" style="font-size:1.1rem;">
+          <li><strong>PT Artivisi Intermedia</strong> — berdiri 2008, 18 tahun di industri IT</li>
+          <li>Klien: BNI, Pegadaian, KAI, Telkom</li>
+          <li>Keahlian: sistem pembayaran, keamanan transaksi, aplikasi enterprise</li>
+          <li>Satu keluarga produk dengan <strong>Balaka</strong> (akunting) — dipakai sendiri oleh ArtiVisi dan STMIK Tazkia</li>
+        </ul>
+        <p style="margin-top:2rem;font-style:italic;opacity:0.6;font-size:1rem;">"Kami membangun infrastruktur pembayaran untuk bank. Standar yang sama kami pakai untuk SPP sekolah."</p>
+      </div>
+      <div style="text-align:center;">
+        <img src="https://artivisi.com/sawala/screenshots/beranda-admin.png" alt="Panel Admin" class="screenshot">
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 12a: CTA — Sekolah (direct) -->
+  <div class="slide slide-brand variant variant-sekolah" id="s12">
+    <div style="text-align:center;">
+      <h1>Siap untuk Tahun Ajaran Baru</h1>
+      <p class="subtitle" style="margin:0 auto 2rem;text-align:center;">3 langkah untuk mulai:</p>
+      <div style="display:flex;justify-content:center;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-size:2.5rem;font-weight:800;opacity:0.3;">1</div>
+          <div style="font-size:1.05rem;font-weight:600;">Pilih Paket</div>
+          <div style="font-size:0.85rem;opacity:0.7;">Tunas, Madya,<br>atau Utama</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:2.5rem;font-weight:800;opacity:0.3;">2</div>
+          <div style="font-size:1.05rem;font-weight:600;">Kami Siapkan</div>
+          <div style="font-size:0.85rem;opacity:0.7;">Import data siswa & kelas,<br>pelatihan TU + guru</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:2.5rem;font-weight:800;opacity:0.3;">3</div>
+          <div style="font-size:1.05rem;font-weight:600;">Langsung Pakai</div>
+          <div style="font-size:0.85rem;opacity:0.7;">Absensi, hafalan,<br>SPP berjalan</div>
+        </div>
+      </div>
+      <div style="font-size:1.1rem;margin-bottom:1.5rem;">
+        <p style="margin-bottom:0.4rem;"><strong>WhatsApp:</strong> 0812-9800-0468</p>
+        <p style="margin-bottom:0.4rem;"><strong>Email:</strong> info@artivisi.com</p>
+        <p><strong>Web:</strong> sawala.artivisi.id</p>
+      </div>
+      <p style="opacity:0.5;font-size:0.85rem;">Demo online: sdit.demo.sawala.artivisi.id &middot; terpadu.demo.sawala.artivisi.id</p>
+    </div>
+  </div>
+
+  <!-- Slide 12b: CTA — Yayasan -->
+  <div class="slide slide-brand variant variant-yayasan" id="s12b" style="display:none;">
+    <div>
+      <h1>Paket <span style="opacity:0.8;">Yayasan</span></h1>
+      <p class="subtitle" style="margin-bottom:2rem;">Setiap unit sekolah dapat aplikasinya sendiri. Keuangan yayasan terkonsolidasi otomatis di Balaka.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <div>
+          <table style="width:100%;font-size:0.95rem;">
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><td style="padding:0.6rem 0;opacity:0.7;">Sawala per unit</td><td style="padding:0.6rem 0;font-weight:700;">Sesuai tier ukuran</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><td style="padding:0.6rem 0;opacity:0.7;">Balaka hosted (yayasan)</td><td style="padding:0.6rem 0;font-weight:700;">Pembukuan, pajak, payroll</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><td style="padding:0.6rem 0;opacity:0.7;">Diskon bundel</td><td style="padding:0.6rem 0;font-weight:700;">~15%</td></tr>
+            <tr><td style="padding:0.6rem 0;opacity:0.7;">Jaringan ≥ 10 unit</td><td style="padding:0.6rem 0;font-weight:700;">Rp 150K/unit/bln, master agreement</td></tr>
+          </table>
+        </div>
+        <div>
+          <ul class="check-list" style="font-size:0.95rem;">
+            <li>SPP terverifikasi → jurnal yayasan otomatis</li>
+            <li>Data tiap sekolah tetap terpisah penuh</li>
+            <li>Pilot satu unit dulu, rollout bertahap</li>
+            <li>Satu vendor untuk operasional + pembukuan</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:2rem;font-size:1rem;">
+        <strong>WhatsApp:</strong> 0812-9800-0468 &middot; <strong>Email:</strong> info@artivisi.com &middot; <strong>Web:</strong> sawala.artivisi.id/mitra.html
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 12c: CTA — Mitra Implementor -->
+  <div class="slide slide-brand variant variant-mitra" id="s12c" style="display:none;">
+    <div>
+      <h1>Program <span style="opacity:0.8;">Mitra Implementor</span></h1>
+      <p class="subtitle" style="margin-bottom:2rem;">Layani sekolah di jaringan Anda dengan Sawala. Anda tangani pendampingan, kami tangani server.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <div>
+          <table style="width:100%;font-size:0.95rem;">
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><td style="padding:0.6rem 0;opacity:0.7;">Harga mitra</td><td style="padding:0.6rem 0;font-weight:700;">Rp 150.000/sekolah/bln</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><td style="padding:0.6rem 0;opacity:0.7;">Minimum</td><td style="padding:0.6rem 0;font-weight:700;">5 sekolah</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><td style="padding:0.6rem 0;opacity:0.7;">Harga jual</td><td style="padding:0.6rem 0;font-weight:700;">Anda tentukan sendiri</td></tr>
+            <tr><td style="padding:0.6rem 0;opacity:0.7;">White-label per sekolah</td><td style="padding:0.6rem 0;font-weight:700;">Termasuk</td></tr>
+          </table>
+        </div>
+        <div>
+          <p style="font-size:0.85rem;opacity:0.6;margin-bottom:0.75rem;">Simulasi margin (jual Rp 399K/sekolah):</p>
+          <table style="width:100%;font-size:0.9rem;">
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.15);"><td style="padding:0.5rem 0;opacity:0.7;">5 sekolah</td><td style="padding:0.5rem 0;font-weight:700;color:#D98A64;">Rp 1.245.000/bln</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.15);"><td style="padding:0.5rem 0;opacity:0.7;">10 sekolah</td><td style="padding:0.5rem 0;font-weight:700;color:#D98A64;">Rp 2.490.000/bln</td></tr>
+            <tr><td style="padding:0.5rem 0;opacity:0.7;">20 sekolah</td><td style="padding:0.5rem 0;font-weight:700;color:#D98A64;">Rp 4.980.000/bln</td></tr>
+          </table>
+        </div>
+      </div>
+      <div style="margin-top:2rem;font-size:1rem;">
+        <strong>WhatsApp:</strong> 0812-9800-0468 &middot; <strong>Email:</strong> info@artivisi.com &middot; <strong>Web:</strong> sawala.artivisi.id/mitra.html
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 12d: CTA — Bank / Ekosistem -->
+  <div class="slide slide-brand variant variant-bank" id="s12d" style="display:none;">
+    <div>
+      <h1>Untuk <span style="opacity:0.8;">Ekosistem Bank Syariah</span></h1>
+      <p class="subtitle" style="margin-bottom:2rem;">Sekolah dan pesantren binaan bank mendapat aplikasi operasional; SPP mengalir melalui rekening dan rail pembayaran bank.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <div>
+          <ul class="check-list" style="font-size:0.95rem;">
+            <li>Sekolah membayar langganan langsung — bukan pengadaan bank</li>
+            <li>SPP via Virtual Account / QRIS bank, dana mengendap di bank</li>
+            <li>Biaya layanan flat per transaksi (ujrah) — bukan persentase nilai</li>
+            <li>Integrasi SNAP Bank Indonesia melalui gateway milik sendiri</li>
+            <li>Open source — dapat diaudit tim IT bank</li>
+          </ul>
+        </div>
+        <div>
+          <table style="width:100%;font-size:0.95rem;">
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><td style="padding:0.6rem 0;opacity:0.7;">Peran bank</td><td style="padding:0.6rem 0;font-weight:700;">Referral + rail pembayaran</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><td style="padding:0.6rem 0;opacity:0.7;">Pembayar</td><td style="padding:0.6rem 0;font-weight:700;">Sekolah (dana privat)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><td style="padding:0.6rem 0;opacity:0.7;">Insentif sekolah referral</td><td style="padding:0.6rem 0;font-weight:700;">Bebas biaya setup</td></tr>
+            <tr><td style="padding:0.6rem 0;opacity:0.7;">Segmen lanjutan</td><td style="padding:0.6rem 0;font-weight:700;">Pesantren, ZISWAF, unit usaha</td></tr>
+          </table>
+        </div>
+      </div>
+      <div style="margin-top:2rem;font-size:1rem;">
+        <strong>WhatsApp:</strong> 0812-9800-0468 &middot; <strong>Email:</strong> info@artivisi.com &middot; <strong>Web:</strong> sawala.artivisi.id
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation bar -->
+<div class="nav-bar">
+  <img src="logo-full-dark.svg" alt="Sawala" class="logo">
+  <div class="mode-selector">
+    <button class="mode-btn active" onclick="setMode('sekolah')">Sekolah</button>
+    <button class="mode-btn" onclick="setMode('yayasan')">Yayasan</button>
+    <button class="mode-btn" onclick="setMode('mitra')">Mitra</button>
+    <button class="mode-btn" onclick="setMode('bank')">Bank</button>
+  </div>
+  <span class="counter"><span id="current">1</span> / <span id="total">12</span></span>
+  <div class="controls">
+    <button onclick="prev()">&#9664; Prev</button>
+    <button onclick="next()">Next &#9654;</button>
+  </div>
+</div>
+
+<div class="fs-hint">Tekan F11 untuk fullscreen</div>
+
+<script>
+let current = 0;
+let mode = 'sekolah';
+let deck = [];
+
+// Slides 1-11 are shared, slide 12 varies by mode
+function buildDeck() {
+  const shared = Array.from(document.querySelectorAll('.slide:not(.variant)'));
+  const variantMap = {
+    sekolah: document.getElementById('s12'),
+    yayasan: document.getElementById('s12b'),
+    mitra: document.getElementById('s12c'),
+    bank: document.getElementById('s12d'),
+  };
+
+  document.querySelectorAll('.variant').forEach(s => { s.style.display = 'none'; s.classList.remove('active'); });
+
+  deck = [...shared, variantMap[mode]];
+  document.getElementById('total').textContent = deck.length;
+}
+
+function show(n) {
+  deck[current].classList.remove('active');
+  deck[current].style.display = 'none';
+  current = ((n % deck.length) + deck.length) % deck.length;
+  deck[current].style.display = 'flex';
+  deck[current].classList.add('active');
+  document.getElementById('current').textContent = current + 1;
+}
+
+function next() { show(current + 1); }
+function prev() { show(current - 1); }
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.mode-btn[onclick*="' + m + '"]').classList.add('active');
+
+  const wasLast = current === deck.length - 1;
+  deck[current].classList.remove('active');
+  deck[current].style.display = 'none';
+
+  buildDeck();
+
+  if (wasLast) current = deck.length - 1;
+  if (current >= deck.length) current = deck.length - 1;
+
+  deck[current].style.display = 'flex';
+  deck[current].classList.add('active');
+  document.getElementById('current').textContent = current + 1;
+}
+
+buildDeck();
+deck[0].style.display = 'flex';
+deck[0].classList.add('active');
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+  if (e.key === 'Home') { e.preventDefault(); show(0); }
+  if (e.key === 'End') { e.preventDefault(); show(deck.length - 1); }
+  // Mode shortcuts
+  if (e.key === '1') setMode('sekolah');
+  if (e.key === '2') setMode('yayasan');
+  if (e.key === '3') setMode('mitra');
+  if (e.key === '4') setMode('bank');
+});
+
+let touchStart = 0;
+document.addEventListener('touchstart', e => { touchStart = e.changedTouches[0].clientX; });
+document.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].clientX - touchStart;
+  if (Math.abs(diff) > 50) { diff < 0 ? next() : prev(); }
+});
+</script>
+
+</body>
+</html>

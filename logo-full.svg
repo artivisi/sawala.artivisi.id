@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 140">
+  <!-- 8-point star mark (two overlapping squares) -->
+  <g fill="#5c6b3d">
+    <rect x="22" y="32" width="76" height="76" rx="6"/>
+    <rect x="22" y="32" width="76" height="76" rx="6" transform="rotate(45 60 70)"/>
+  </g>
+  <circle cx="60" cy="70" r="17" fill="#faf8f3"/>
+  <circle cx="60" cy="70" r="9" fill="#b5562f"/>
+  <!-- Wordmark: Plus Jakarta Sans SemiBold -->
+  <text x="125" y="120" font-family="'Plus Jakarta Sans', sans-serif" font-size="140" font-weight="600" fill="#5c6b3d" letter-spacing="1">Sawala</text>
+</svg>
