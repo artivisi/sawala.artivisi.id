@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --brand: #5C6B3D;
@@ -16,13 +16,20 @@
     --brand-50: #eff1e6;
     --accent: #D98A64;
     --accent-dark: #B5562F;
-    --slate-100: #f1f5f9;
-    --slate-200: #e2e8f0;
-    --slate-400: #94a3b8;
-    --slate-500: #64748b;
-    --slate-600: #475569;
-    --slate-800: #1e293b;
-    --slate-900: #0f172a;
+    --gold: #C9A45C;
+    --ink-bg: #16130F;          /* warm dark, matches the product's earth tones */
+    --ink-soft: rgba(240,234,219,0.72);
+    --line: rgba(240,234,219,0.12);
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    /* legacy slate names, remapped warm */
+    --slate-100: #F0EBDF;
+    --slate-200: #E5DFD2;
+    --slate-400: #A39A8B;
+    --slate-500: #857C6C;
+    --slate-600: #6B6357;
+    --slate-800: #2A2620;
+    --slate-900: #211D17;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,10 +37,12 @@
   html, body { height: 100%; overflow: hidden; }
   body {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    background: #0f1218;
-    color: white;
+    background: var(--ink-bg);
+    color: #F4EFE3;
     -webkit-font-smoothing: antialiased;
   }
+  ::selection { background: var(--brand); color: white; }
+  :focus-visible { outline: 2px solid var(--brand-light); outline-offset: 2px; }
 
   /* Slide container */
   .slides { height: 100vh; width: 100vw; position: relative; }
@@ -50,25 +59,57 @@
   .slide .cols { max-height: calc(100vh - 10rem); overflow: hidden; }
   .slide.active { display: flex; }
 
+  /* Content enters with a soft rise; off under reduced motion */
+  @media (prefers-reduced-motion: no-preference) {
+    .slide.active > * {
+      animation: rise 0.45s ease both;
+    }
+    .slide.active > *:nth-child(2) { animation-delay: 70ms; }
+    .slide.active > *:nth-child(3) { animation-delay: 140ms; }
+    .slide.active > *:nth-child(4) { animation-delay: 210ms; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+
   /* Slide backgrounds */
   .slide-brand {
-    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+      linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
   }
+  .slide-brand::after {
+    /* large 8-point star ornament, fading off the right edge */
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -18vmin;
+    width: 64vmin;
+    height: 64vmin;
+    transform: translateY(-50%) rotate(12deg);
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.015) 55%, transparent 70%);
+    clip-path: polygon(50% 0%, 59% 29%, 85% 15%, 71% 41%, 100% 50%, 71% 59%, 85% 85%, 59% 71%, 50% 100%, 41% 71%, 15% 85%, 29% 59%, 0% 50%, 29% 41%, 15% 15%, 41% 29%);
+    pointer-events: none;
+  }
+  .slide-brand > * { position: relative; z-index: 1; }
   .slide-dark {
-    background: #0f1218;
+    background:
+      radial-gradient(720px 480px at 85% -10%, rgba(92,107,61,0.16) 0%, rgba(92,107,61,0) 70%),
+      var(--ink-bg);
   }
   .slide-light {
-    background: #faf8f3;
+    background: #F6F2EA;
     color: var(--slate-800);
   }
 
   /* Typography */
-  h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
-  h2 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
-  h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
-  .subtitle { font-size: 1.25rem; opacity: 0.8; max-width: 700px; line-height: 1.6; }
-  .small { font-size: 0.85rem; opacity: 0.6; }
-  .small code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: rgba(255,255,255,0.12); border-radius: 5px; padding: 0.08em 0.45em; color: #fff; opacity: 1; font-size: 0.92em; }
+  h1 { font-size: 3.1rem; font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 1rem; }
+  h2 { font-size: 2.3rem; font-weight: 800; line-height: 1.18; letter-spacing: -0.015em; margin-bottom: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .subtitle { font-size: 1.25rem; color: var(--ink-soft); max-width: 700px; line-height: 1.6; }
+  .small { font-size: 0.85rem; opacity: 0.62; }
+  .small code { font-family: var(--font-mono); background: rgba(255,255,255,0.12); border-radius: 5px; padding: 0.08em 0.45em; color: #fff; opacity: 1; font-size: 0.92em; }
   .accent { color: var(--accent); }
   .brand-text { color: var(--brand-light); }
 
@@ -96,30 +137,36 @@
 
   .bullet-list { list-style: none; padding: 0; }
   .bullet-list li {
-    padding: 0.4rem 0 0.4rem 1.5rem;
+    padding: 0.4rem 0 0.4rem 1.6rem;
     position: relative;
     font-size: 0.95rem;
-    opacity: 0.85;
+    opacity: 0.88;
   }
   .bullet-list li::before {
-    content: '\2022';
+    /* 8-point star bullet */
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--accent);
-    font-size: 1.2rem;
+    top: 0.85rem;
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
   }
 
   /* Screenshots */
   .screenshot {
-    border-radius: 8px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.45);
     max-height: 55vh;
     max-width: 100%;
     object-fit: contain;
   }
   .screenshot-sm {
-    border-radius: 6px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
     max-height: 28vh;
     max-width: 100%;
     object-fit: contain;
@@ -135,31 +182,54 @@
   /* Tables */
   table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
   th, td { padding: 0.6rem 1rem; text-align: left; }
-  th { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  th { font-weight: 600; font-size: 0.78rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.07em; }
 
-  .table-dark th { border-bottom: 2px solid rgba(255,255,255,0.2); color: var(--accent); }
+  .table-dark th { border-bottom: 2px solid rgba(255,255,255,0.22); color: var(--accent); }
   .table-dark td { border-bottom: 1px solid rgba(255,255,255,0.08); }
 
   /* Price cards */
   .price-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .price-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    padding: 1.5rem;
+    background: rgba(255,255,255,0.055);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1.6rem 1.5rem;
     text-align: center;
   }
   .price-card.featured {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.095);
     border-color: var(--accent);
-    box-shadow: 0 0 20px rgba(217,138,100,0.15);
+    box-shadow: 0 0 28px rgba(217,138,100,0.16);
   }
-  .price-card h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .price-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.25rem; }
   .price-card .target { font-size: 0.8rem; opacity: 0.6; margin-bottom: 1rem; }
-  .price-card .price { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .price-card .price {
+    font-family: var(--font-mono);
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.25rem;
+  }
+  .price-card.featured .price { color: var(--accent); }
   .price-card .period { font-size: 0.85rem; opacity: 0.6; margin-bottom: 1rem; }
-  .price-card .feature { font-size: 0.8rem; opacity: 0.7; padding: 0.2rem 0; }
+  .price-card .feature { font-size: 0.8rem; opacity: 0.72; padding: 0.22rem 0; }
   .price-card .feature strong { color: var(--accent); opacity: 1; }
+
+  /* Progress bar */
+  .progress {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: rgba(255,255,255,0.07);
+    z-index: 110;
+  }
+  .progress div {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--brand-light), var(--gold));
+    transition: width 0.3s ease;
+  }
 
   /* Navigation */
   .nav-bar {
@@ -171,53 +241,68 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 2rem;
-    background: rgba(15,18,24,0.85);
-    backdrop-filter: blur(8px);
+    background: rgba(22,19,15,0.85);
+    border-top: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     z-index: 100;
     font-size: 0.8rem;
   }
   .nav-bar .logo { height: 20px; opacity: 0.6; }
-  .nav-bar .counter { opacity: 0.4; }
+  .nav-bar .counter { opacity: 0.45; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
   .nav-bar .controls { display: flex; gap: 0.5rem; }
   .nav-bar button {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.15);
     color: white;
-    border-radius: 6px;
-    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    padding: 0.38rem 1.05rem;
     font-family: inherit;
     font-size: 0.8rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
   }
-  .nav-bar button:hover { background: rgba(255,255,255,0.2); }
-  .mode-selector { display: flex; gap: 2px; background: rgba(255,255,255,0.05); border-radius: 6px; padding: 2px; }
+  .nav-bar button:hover { background: rgba(255,255,255,0.18); }
+  .mode-selector { display: flex; gap: 2px; background: rgba(255,255,255,0.05); border-radius: 999px; padding: 3px; }
   .mode-btn {
     background: transparent;
     border: none;
-    color: rgba(255,255,255,0.4);
-    border-radius: 4px;
-    padding: 0.3rem 0.75rem;
+    color: rgba(255,255,255,0.45);
+    border-radius: 999px;
+    padding: 0.32rem 0.85rem;
     font-family: inherit;
     font-size: 0.7rem;
     font-weight: 600;
     cursor: pointer;
     letter-spacing: 0.03em;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
-  .mode-btn:hover { color: rgba(255,255,255,0.7); }
-  .mode-btn.active { background: rgba(255,255,255,0.15); color: white; }
+  .mode-btn:hover { color: rgba(255,255,255,0.75); }
+  .mode-btn.active { background: var(--brand); color: white; }
 
   /* Fullscreen hint */
   .fs-hint {
     position: fixed;
-    top: 1rem;
+    top: 0.85rem;
     right: 1rem;
     font-size: 0.7rem;
     opacity: 0.3;
     z-index: 100;
   }
+
+  @media (max-width: 900px) {
+    .slide { padding: 2rem 1.5rem 5rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .cols, .cols-60-40, .cols-40-60 { grid-template-columns: 1fr; gap: 1.5rem; }
+    .price-cards { grid-template-columns: 1fr; gap: 0.75rem; }
+    .screenshot-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
+
+<div class="progress"><div id="progress-fill"></div></div>
 
 <div class="slides">
 
@@ -591,6 +676,11 @@ function show(n) {
   deck[current].style.display = 'flex';
   deck[current].classList.add('active');
   document.getElementById('current').textContent = current + 1;
+  updateProgress();
+}
+
+function updateProgress() {
+  document.getElementById('progress-fill').style.width = ((current + 1) / deck.length * 100) + '%';
 }
 
 function next() { show(current + 1); }
@@ -613,11 +703,13 @@ function setMode(m) {
   deck[current].style.display = 'flex';
   deck[current].classList.add('active');
   document.getElementById('current').textContent = current + 1;
+  updateProgress();
 }
 
 buildDeck();
 deck[0].style.display = 'flex';
 deck[0].classList.add('active');
+updateProgress();
 
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
